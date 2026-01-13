@@ -12,21 +12,21 @@ This task is foundational for applications in:
 *   **Content Filtering:** Automatically identifying and categorizing artistic vs. real-world content.
 *   **Dataset Cleaning:** Sanitizing large-scale face datasets for training biometric systems.
 
-### Dataset Configuration
-For a robust classification performance, the following dataset strategies are recommended:
 
-#### 1. Binary Classification (Ideal Setup)
-*   **Target Volume:** ~10,000 images total.
-*   **Class Distribution:** 5,000 images of real humans / 5,000 images of non-humans.
-*   **Diversity Requirement:** The non-human class should be subdivided into ~1,250 images each for anime, gaming characters, statues, and 3D avatars to prevent bias toward a specific artistic style.
+## Project 2: Face Analysis in Crowds
 
-#### 2. Multi-Class Classification (Advanced Setup)
-*   **Target Volume:** ~15,000+ images total.
-*   **Recommended Classes:** `Human`, `Anime/Cartoon`, `Game_CGI`, `Physical_Arts (Statues)`.
-*   **Ideal Number per Class:** 3,000 to 4,000 images per category.
-*   **Complexity Note:** Multi-class classification provides higher utility but requires more precise labeling to distinguish between high-fidelity CGI and real humans.
+### Description
+Evaluate the efficiency and accuracy of state-of-the-art face detection models (**InsightFace** and **Uniface**) in complex, high-density crowd scenarios.
 
-#### 3. Data Split Strategy
-*   **Training (70%):** ~7,000 images for model learning.
-*   **Validation (15%):** ~1,500 images for hyperparameter tuning.
-*   **Test (15%):** ~1,500 images for final performance benchmarking (unseen data).
+### Objectives
+*   **Crowd Benchmarking:** Assess how well models detect small, partially occluded, or distant faces in crowded environments.
+*   **Comparative Analysis:** Performance comparison between `InsightFace` (SCRFD/Buffalo_L) and `Uniface` (YOLOv5Face) models.
+*   **Efficiency Metrics:**
+    *   **Detection Rate:** Percentage of ground-truth faces correctly detected.
+    *   **Count Error:** Mean Absolute Error (MAE) between detected face count and ground truth.
+    *   **Precision/Recall:** Statistical evaluation of detection quality.
+
+### Dataset
+*   **Source:** [Crowd Counting Dataset (Roboflow)](https://universe.roboflow.com/crowd-dataset/crowd-counting-dataset-w3o7w)
+*   **Format:** YOLOv5 PyTorch (Normalized bounding boxes).
+*   **Split:** Evaluated on the `test` set containing various crowd densities and lighting conditions.
